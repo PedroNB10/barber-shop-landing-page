@@ -1,6 +1,7 @@
 "use client";
 
 import Product from "@/components/Product";
+import Services from "@/components/Services";
 
 export default function Home() {
   return (
@@ -12,7 +13,7 @@ export default function Home() {
             VALORES
           </h2>
           <div className="flex flex-col items-center justify-center gap-6 md:flex-row">
-            <div className="flex md:flex-col items-center w-5/12 md:h-72 md:justify-around ml-5">
+            <div className="flex md:flex-col items-center justify-center w-5/12 md:h-72 md:justify-around ml-5">
               <span className="flex text-lg text-center font-medium">
                 Lorem ipsum dolor, sit amet consectetur adipisicing elit. Neque,
                 id.
@@ -71,7 +72,7 @@ export default function Home() {
           </div>
         </div>
       </section>
-        
+
       {/* Produtos */}
       <section className="bg-gradient-to-r from-vermelho to-black py-12">
         <div className="flex flex-col items-center justify-center mb-6">
