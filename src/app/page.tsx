@@ -6,13 +6,13 @@ export default function Home() {
   return (
     <>
       {/* Valores */}
-      <section className="flex items-center justify-center bg-bege">
-        <div className="flex flex-col items-center justify-center bg-bege mb-6">
-          <h2 className="text-3xl md:text-6xl text-vermelho font-rollingstone m-9 md:mb-16">
+      <section className="flex items-center justify-center bg-bege py-6">
+        <div className="flex flex-col items-center justify-center bg-bege mb-6 max-w-screen-xl">
+          <h2 className="text-3xl md:text-6xl text-vermelho font-rollingstone py-6 md:mb-16">
             VALORES
           </h2>
           <div className="flex flex-col items-center justify-center gap-6 md:flex-row">
-            <div className="flex md:flex-col items-center w-5/12 md:h-72 md:justify-around">
+            <div className="flex md:flex-col items-center w-5/12 md:h-72 md:justify-around ml-5">
               <span className="flex text-lg text-center font-medium">
                 Lorem ipsum dolor, sit amet consectetur adipisicing elit. Neque,
                 id.
@@ -32,8 +32,8 @@ export default function Home() {
                 </a>
               </div>
             </div>
-            <div className="flex flex-col items-center justify-center w-full gap-4">
-              <div className="flex flex-col md:flex-row items-center justify-center rounded-md gap-6 md:gap-8 pb-4">
+            <div className="flex flex-col items-center justify-center w-full gap-4 pb-6">
+              <div className="grid grid-rows-3 grid-cols-1 md:grid-rows-1 md:grid-cols-3 rounded-md gap-6 md:gap-3 lg:gap-8 md:mr-5">
                 <Services
                   imgUrl="\img\valor-barba.jpg"
                   imgAlt="Imagem de uma barba"
@@ -47,7 +47,7 @@ export default function Home() {
                   price="R$50,00"
                 ></Services>
                 <Services
-                  imgUrl="\img\valor-sobrancelha.png"
+                  imgUrl="\img\valor-sobrancelha.jpg"
                   imgAlt="Imagem de um homem na barbearia sorrindo"
                   name="Sobrancelha"
                   price="R$50,00"
