@@ -9,15 +9,17 @@ interface IProps {
 
 const Services = ({ imgUrl, imgAlt, name, price }: IProps) => {
   return (
-    <div className="flex flex-col justify-center gap-2 w-full">
-      <img
-        className="h-64 w-64 bg-black rounded-2xl border-2 border-vermelho object-cover brightness-75"
-        src={imgUrl}
-        alt={imgAlt}
-      />
-      <div className="flex flex-col items-center p-1 gap-1">
-        <h3 className="text-2xl font-bold">{name}</h3>
-        <span className="text-lg">{price}</span>
+    <div className="flex flex-col justify-center items-center gap-2">
+      <div className="flex flex-col items-center justify-center md:size-full">
+        <img
+          className="object-cover h-4/5 w-4/5 md:h-full md:w-full bg-black rounded-2xl border-2 border-vermelho brightness-75"
+          src={imgUrl}
+          alt={imgAlt}
+        />
+        <div className="flex flex-col items-center p-1 gap-1">
+          <h3 className="text-2xl font-bold">{name}</h3>
+          <span className="text-lg">{price}</span>
+        </div>
       </div>
     </div>
   );
