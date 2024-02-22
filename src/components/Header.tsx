@@ -26,9 +26,9 @@ export function Header() {
 
         <div className="flex items-center   justify-center bg-azul-escuro-forte ">
 
-            <header className={`${showMenu == 'visible' ? 'hidden' : 'visible'}  bg-azul-escuro-forte text-white h-24 md:h-32 flex items-center justify-evenly md:justify-around  w-10/12 z-10 `}>
+            <header className={`${showMenu == 'visible' ? 'hidden' : 'visible'} gap-6 bg-azul-escuro-forte text-white h-24 md:h-32 flex items-center justify-evenly   md:w-[70vw] lg:w[55vw] z-10 `}>
                 <picture>
-                    <img className="w-[65px]  md:w-24" src="/img/barba-rolling-logo.png" alt="" />
+                    <img className="w-[65px] md:24 " src="/img/barba-rolling-logo.png" alt="logo da barbearia" />
                 </picture>
 
                 <ul className="hidden md:visible md:flex items-center gap-6">
@@ -54,7 +54,7 @@ export function Header() {
             <div className={` ${showMenu == 'visible' ? 'h-80' : 'h-0'}  fixed top-0 left-0 right-0 z-10 bg-bege flex flex-col items-center justify-center transition-all duration-500 ease-in-out  `}>
 
                 <button >
-                    <svg onClick={closeMenu} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={`${showMenu} md:hidden  w-10 h-10 absolute top-0 right-0 `}>
+                    <svg onClick={closeMenu} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={`${showMenu} md:hidden  w-10 h-10 absolute top-5 right-5 `}>
                         <path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12" />
                     </svg>
                 </button>
