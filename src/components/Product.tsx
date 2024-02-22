@@ -10,7 +10,7 @@ interface IProps {
 const Product = ({ imgUrl, imgAlt, titulo, descricao }: IProps) => {
   return (
     <div className="flex items-center justify-center">
-      <div className="relative w-2/4 md:size-3/5 bg-gray-900 group">
+      <div className="relative w-2/4 md:size-7/12 bg-gray-900 group">
         <img
           className="absolute inset-0 object-cover w-full h-full group-hover:opacity-50"
           src={imgUrl}

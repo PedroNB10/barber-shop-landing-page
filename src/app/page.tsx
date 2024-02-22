@@ -23,13 +23,39 @@ export default function Home() {
 
   return (
     <>
+      {/* Carrossel */}
       <Carousel slides={slides} />
+
+      {/* Sobre */}
+      <section className="flex items-center justify-center py-6 bg-[url('/img/img-sobre.jpg')] bg-local bg-cover bg-center md:bg-none md:bg-azul-escuro-forte">
+        <div className="md:flex md:flex-row items-center pb-8 max-w-screen-xl">
+          <img
+            className="hidden md:flex w-6/12 rounded-r-full mt-4"
+            src="/img/img-sobre.jpg"
+            alt=""
+          />
+          <div className="flex flex-col items-center justify-center md:w-6/12">
+            <h2 className="text-3xl md:text-6xl text-vermelho font-rollingstone py-6">
+              Sobre
+            </h2>
+            <div className="bg-azul-escuro-forte w-3/4 rounded-3xl p-4">
+              <p className="text-white text-center text-lg font-medium">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est
+                accusamus magni maiores suscipit molestiae voluptas velit
+                repellendus ut culpa. Sequi nemo blanditiis sed reiciendis aut
+                iusto dicta porro qui adipisci aliquam facilis molestiae
+                repellendus quia ipsam minus excepturi, culpa deserunt?
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* Valores */}
       <section className="flex items-center justify-center bg-bege py-6">
         <div className="flex flex-col items-center justify-center bg-bege mb-6 max-w-screen-xl">
           <h2 className="text-3xl md:text-6xl text-vermelho font-rollingstone py-6 md:mb-16">
-            VALORES
+            Valores
           </h2>
           <div className="flex flex-col items-center justify-center gap-6 md:flex-row">
             <div className="flex md:flex-col items-center justify-center w-5/12 md:h-72 md:justify-around ml-5">
@@ -97,7 +123,7 @@ export default function Home() {
         <div className="flex flex-col items-center justify-center max-w-screen-xl">
           <div className="flex flex-col items-center justify-center mb-6">
             <h2 className="text-3xl md:text-6xl text-white font-rollingstone m-9 md:mb-16">
-              PRODUTOS
+              Produtos
             </h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 grid-flow-row auto-rows items-center justify-center gap-y-32 md:mx-6 md:flex-row ">
@@ -108,22 +134,6 @@ export default function Home() {
               descricao="Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos
                   totam aliquid itaque ex quibusdam tempore, nisi accusamus quia
                   fugiat?."
-            ></Product>
-            <Product
-              imgUrl="\img\produtos.png"
-              imgAlt="temp"
-              titulo="Título"
-              descricao="Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos
-              totam aliquid itaque ex quibusdam tempore, nisi accusamus quia
-              fugiat?."
-            ></Product>
-            <Product
-              imgUrl="\img\produtos.png"
-              imgAlt="temp"
-              titulo="Título"
-              descricao="Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos
-              totam aliquid itaque ex quibusdam tempore, nisi accusamus quia
-              fugiat?."
             ></Product>
             <Product
               imgUrl="\img\produtos.png"
