@@ -27,7 +27,7 @@ export default function Home() {
       <Carousel slides={slides} />
 
       {/* Sobre */}
-      <section className="flex items-center justify-center py-6 bg-[url('/img/img-sobre.jpg')] bg-local bg-cover bg-center md:bg-none md:bg-azul-escuro-forte">
+      <section id="sobre" className="flex items-center justify-center py-6 bg-[url('/img/img-sobre.jpg')] bg-local bg-cover bg-center md:bg-none md:bg-azul-escuro-forte">
         <div className="md:flex md:flex-row items-center pb-8 max-w-screen-xl">
           <img
             className="hidden md:flex w-6/12 rounded-r-full mt-4"
@@ -52,7 +52,7 @@ export default function Home() {
       </section>
 
       {/* Valores */}
-      <section className="flex items-center justify-center bg-bege py-6">
+      <section id="valores" className="flex items-center justify-center bg-bege py-6">
         <div className="flex flex-col items-center justify-center bg-bege mb-6 max-w-screen-xl">
           <h2 className="text-3xl md:text-6xl text-vermelho font-rollingstone py-6 md:mb-16">
             Valores
@@ -119,7 +119,7 @@ export default function Home() {
       </section>
 
       {/* Produtos */}
-      <section className="flex items-center justify-center bg-gradient-to-r from-vermelho to-black py-6">
+      <section id="produtos" className="flex items-center justify-center bg-gradient-to-r from-vermelho to-black py-6">
         <div className="flex flex-col items-center justify-center max-w-screen-xl mb-8">
           <div className="flex flex-col items-center justify-center mb-6">
             <h2 className="text-3xl md:text-6xl text-white font-rollingstone m-9 md:mb-16">

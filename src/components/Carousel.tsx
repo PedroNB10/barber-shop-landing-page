@@ -28,7 +28,7 @@ export function Carousel({ slides }: { slides: Slide[] }) {
 
   return (
     <>
-      <div className="flex items-center justify-center bg-cinza relative">
+      <div id="home" className="flex items-center justify-center bg-cinza relative">
         <div className=" relative flex items-center justify-center overflow-hidden h-1/2 md:w-[65vw] lg:w-[55vw] max-w-screen-xl">
           <div
             className={`flex transition ease-out duration-500`}
