@@ -119,8 +119,8 @@ export default function Home() {
       </section>
 
       {/* Produtos */}
-      <section className="flex items-center justify-center bg-gradient-to-r from-vermelho to-black py-12">
-        <div className="flex flex-col items-center justify-center max-w-screen-xl">
+      <section className="flex items-center justify-center bg-gradient-to-r from-vermelho to-black py-6">
+        <div className="flex flex-col items-center justify-center max-w-screen-xl mb-8">
           <div className="flex flex-col items-center justify-center mb-6">
             <h2 className="text-3xl md:text-6xl text-white font-rollingstone m-9 md:mb-16">
               Produtos
