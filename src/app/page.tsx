@@ -1,11 +1,26 @@
 "use client";
 
+
 import Product from "@/components/Product";
 import Services from "@/components/Services";
 
+import { Carousel, Slide } from "@/components/Carousel";
+
+
+
 export default function Home() {
+
+  let slides: Slide[] = [
+    { src: "img/carrossel-01.jpg", alt: "Rapaz cortando o cabelo de um outro homem." },
+    { src: "img/carrossel-02.jpg", alt: "Corte em foco de um outro cabeleireiro." },
+    { src: "img/carrossel-03.jpg", alt: "Barbeiro realizando um corte preciso na barba do cliente." },
+  ];
+
   return (
     <>
+
+      <Carousel slides={slides} />
+
       {/* Valores */}
       <section className="flex items-center justify-center bg-bege py-6">
         <div className="flex flex-col items-center justify-center bg-bege mb-6 max-w-screen-xl">
@@ -73,6 +88,7 @@ export default function Home() {
         </div>
       </section>
 
+
       {/* Produtos */}
       <section className="bg-gradient-to-r from-vermelho to-black py-12">
         <div className="flex flex-col items-center justify-center mb-6">
@@ -123,6 +139,14 @@ export default function Home() {
           ></Product>
         </div>
       </section>
+
+
+
+
+
+
+
+
     </>
   );
 }
