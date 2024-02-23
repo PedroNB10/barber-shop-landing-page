@@ -24,6 +24,7 @@ const config: Config = {
         "azul-claro": "#00a2bc",
         "bege": "#f2efe6",
         "vermelho": "#bb241d",
+        "vermelho-claro": "#FB3231",
         "cinza": "#222222",
 
       },

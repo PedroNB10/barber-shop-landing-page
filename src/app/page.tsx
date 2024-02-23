@@ -27,7 +27,7 @@ export default function Home() {
       <Carousel slides={slides} />
 
       {/* Sobre */}
-      <section id="sobre" className="flex items-center justify-center py-6 bg-[url('/img/img-sobre.jpg')] bg-local bg-cover bg-center md:bg-none md:bg-azul-escuro-forte">
+      <section className="flex items-center justify-center py-6 bg-[url('/img/img-sobre-escura.jpg')] bg-local bg-cover bg-center md:bg-none md:bg-azul-escuro-forte">
         <div className="md:flex md:flex-row items-center pb-8 max-w-screen-xl">
           <img
             className="hidden md:flex w-6/12 rounded-r-full mt-4"
@@ -35,11 +35,11 @@ export default function Home() {
             alt=""
           />
           <div className="flex flex-col items-center justify-center md:w-6/12">
-            <h2 className="text-3xl md:text-6xl text-vermelho font-rollingstone py-6">
+            <h2 className="text-3xl md:text-6xl text-vermelho-claro md:text-vermelho font-rollingstone py-6">
               Sobre
             </h2>
-            <div className="bg-azul-escuro-forte w-3/4 rounded-3xl p-4">
-              <p className="text-white text-center text-lg font-medium">
+            <div className="w-3/4 rounded-3xl p-4">
+              <p className="text-bege text-center text-lg font-semibold">
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est
                 accusamus magni maiores suscipit molestiae voluptas velit
                 repellendus ut culpa. Sequi nemo blanditiis sed reiciendis aut
@@ -52,9 +52,9 @@ export default function Home() {
       </section>
 
       {/* Valores */}
-      <section id="valores" className="flex items-center justify-center bg-bege py-6">
-        <div className="flex flex-col items-center justify-center bg-bege mb-6 max-w-screen-xl">
-          <h2 className="text-3xl md:text-6xl text-vermelho font-rollingstone py-6 md:mb-16">
+      <section className="flex items-center justify-center bg-azul-escuro-forte py-6">
+        <div className="flex flex-col items-center justify-center text-bege bg-azul-escuro-forte mb-6 max-w-screen-xl">
+          <h2 className="text-3xl md:text-6xl font-rollingstone py-6 md:mb-16">
             Valores
           </h2>
           <div className="flex flex-col items-center justify-center gap-6 md:flex-row">
@@ -63,18 +63,13 @@ export default function Home() {
                 Lorem ipsum dolor, sit amet consectetur adipisicing elit. Neque,
                 id.
               </span>
-              <div className="hidden md:flex justify-center bg-black rounded-3xl p-1 border-2 border-black w-52">
+              <div className="hidden md:flex justify-center bg-vermelho rounded-3xl p-1 border-2 border-black w-52">
                 <a
                   href="https://web.whatsapp.com/"
                   target="_blank"
-                  className="flex flex-row items-center text-white font-bold text-2xl text-center text-nowrap md:gap-3"
+                  className="flex flex-row items-center text-white font-bold text-2xl text-center text-nowrap py-2"
                 >
                   Agende já!
-                  <img
-                    className="w-10 "
-                    src="\img\logo-whatsapp.png"
-                    alt="ícone do whatsapp"
-                  />
                 </a>
               </div>
             </div>
@@ -99,18 +94,13 @@ export default function Home() {
                   price="R$50,00"
                 ></Services>
               </div>
-              <div className="md:hidden flex justify-center bg-black rounded-3xl p-1 border-2 border-black w-52">
+              <div className="md:hidden flex justify-center bg-vermelho rounded-3xl p-1 border-2 border-black w-52">
                 <a
                   href="https://web.whatsapp.com/"
                   target="_blank"
-                  className="flex flex-row items-center text-white font-bold text-xl text-center text-nowrap md:gap-3"
+                  className="flex flex-row items-center text-white font-bold text-xl text-center text-nowrap py-2"
                 >
                   Agende já!
-                  <img
-                    className="w-10 "
-                    src="\img\logo-whatsapp.png"
-                    alt="ícone do whatsapp"
-                  />
                 </a>
               </div>
             </div>
@@ -119,10 +109,10 @@ export default function Home() {
       </section>
 
       {/* Produtos */}
-      <section id="produtos" className="flex items-center justify-center bg-gradient-to-r from-vermelho to-black py-6">
+      <section className="flex items-center justify-center bg-gradient-to-b from-azul-escuro-forte to-black py-6">
         <div className="flex flex-col items-center justify-center max-w-screen-xl mb-8">
           <div className="flex flex-col items-center justify-center mb-6">
-            <h2 className="text-3xl md:text-6xl text-white font-rollingstone m-9 md:mb-16">
+            <h2 className="text-3xl md:text-6xl text-bege font-rollingstone m-9 md:mb-16">
               Produtos
             </h2>
           </div>
