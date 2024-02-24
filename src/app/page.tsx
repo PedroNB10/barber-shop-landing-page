@@ -2,7 +2,6 @@ import Product from "@/components/Product";
 import Services from "@/components/Services";
 
 import { Carousel, Slide } from "@/components/Carousel";
-import { ConfigIds } from "./config";
 import Forms from "@/components/Forms";
 
 export default function Home() {
@@ -166,8 +165,11 @@ export default function Home() {
 
       <section
         id="contato"
-        className="flex items-center justify-center bg-cinza py-6"
+        className="flex flex-col items-center justify-center bg-black py-10 gap-10"
       >
+        <h2 className="text-3xl md:text-6xl text-bege font-rollingstone ">
+          Contato
+        </h2>
         <div className="flex flex-col items-center justify-center max-w-screen-xl">
           <Forms />
         </div>

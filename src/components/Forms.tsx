@@ -4,10 +4,7 @@ import { FormEvent, useEffect, useState } from "react";
 
 import { Toaster, toast } from "sonner";
 import emailjs, { send } from "@emailjs/browser";
-
-import { getConfigIds } from "../app/config";
-import { ConfigIds } from "../app/config";
-import { sendEmail } from "../app/config";
+import { set } from "local-storage";
 
 interface IProps {
   SERVICE_ID: string;
@@ -23,28 +20,57 @@ export interface UserInputs {
 
 export default function Forms() {
   const [name, setName] = useState("");
+  const [telephone, setTelephone] = useState("");
   const [email, setEmail] = useState("");
+  const [subject, setSubject] = useState("");
   const [message, setMessage] = useState("");
 
-  const [IDs, setIDs] = useState<ConfigIds>({
-    PUBLIC_KEY: "",
-    SERVICE_ID: "",
-    TEMPLATE_ID: "",
-  });
-
   useEffect(() => {
-    const getEnv = async () => {
-      const configIds = await getConfigIds();
-      setIDs(configIds);
-    };
+    if (telephone.length === 1) {
+      setTelephone("(" + telephone);
+    }
+    if (telephone.length == 3) {
+      setTelephone(telephone + ")");
+    }
+    if (telephone.length === 10) {
+      setTelephone(telephone + "-");
+    }
 
-    getEnv();
-  }, []);
+    if (telephone.length > 15) {
+      setTelephone(telephone.slice(0, 15));
+    }
+
+    console.log(telephone);
+  }, [telephone]);
+
+  console.log(process.env.NEXT_PUBLIC_SERVICE_ID);
+  console.log(process.env.NEXT_PUBLIC_TEMPLATE_ID);
+  console.log(process.env.NEXT_PUBLIC_PUBLIC_KEY);
+  const IDs = {
+    PUBLIC_KEY:
+      process.env.NEXT_PUBLIC_PUBLIC_KEY == undefined
+        ? ""
+        : process.env.NEXT_PUBLIC_PUBLIC_KEY,
+    SERVICE_ID:
+      process.env.NEXT_PUBLIC_SERVICE_ID == undefined
+        ? ""
+        : process.env.NEXT_PUBLIC_SERVICE_ID,
+    TEMPLATE_ID:
+      process.env.NEXT_PUBLIC_TEMPLATE_ID == undefined
+        ? ""
+        : process.env.NEXT_PUBLIC_TEMPLATE_ID,
+  };
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
-    if (name === "" || email === "" || message === "undefined") {
+    if (
+      name === "" ||
+      email === "" ||
+      message === "" ||
+      telephone === "" ||
+      subject === ""
+    ) {
       toast.error("Preencha todos os campos");
       return;
     }
@@ -53,6 +79,8 @@ export default function Forms() {
 
     const templateParams = {
       from_name: name,
+      phone: telephone,
+      subject: subject,
       message: message,
       email: email,
     };
@@ -69,6 +97,8 @@ export default function Forms() {
               setName("");
               setEmail("");
               setMessage("");
+              setSubject("");
+              setTelephone("");
             }
           },
           (err) => {
@@ -84,27 +114,47 @@ export default function Forms() {
 
   return (
     <div>
-      <div className="bg-red-400 mx-auto p-6 space-y-7">
-        <h1 className="text-center text-white ">Contato</h1>
-        <form action="" onSubmit={handleSubmit} className="flex flex-col gap-4">
+      <div className="bg-bege mx-auto p-6 space-y-7 rounded-lg">
+        <form
+          action=""
+          onSubmit={handleSubmit}
+          className="flex flex-col gap-4 w-[75vw] md:w-[50vw] "
+        >
           <input
             value={name}
             onChange={(e) => {
               setName(e.target.value);
             }}
-            className="p-2 rounded-md text-slate-700"
+            className="p-2 rounded-lg  bg-cinza text-bege"
             type="text"
             placeholder="Digite seu nome"
+          />
+          <input
+            type="tel"
+            value={telephone}
+            onChange={(e) => {
+              setTelephone(e.target.value);
+            }}
+            className="p-2 rounded-lg  bg-cinza text-bege"
+            placeholder="Ex: (11) 99999-9999"
           />
           <input
             value={email}
             onChange={(e) => {
               setEmail(e.target.value);
             }}
-            className="p-2 rounded-md text-slate-700"
-            type="email"
+            className="p-2 rounded-lg  bg-cinza text-bege"
             placeholder="Digite seu email"
           />
+          <input
+            value={subject}
+            onChange={(e) => {
+              setSubject(e.target.value);
+            }}
+            className="p-2 rounded-lg  bg-cinza text-bege"
+            placeholder="Digite o assunto"
+          />
+
           <textarea
             value={message}
             onChange={(e) => {
@@ -112,13 +162,13 @@ export default function Forms() {
             }}
             name=""
             id=""
-            className="resize-none p-2 rounded-md"
+            className="resize-none p-2 rounded-md bg-cinza text-bege h-40 w-full"
             placeholder="Escreva sua mensagem"
           ></textarea>
           <input
-            className=" bg-white cursor-pointer rounded-xl p-3"
+            className=" bg-[#8f1b16] text-bege cursor-pointer rounded-xl p-3"
             type="submit"
-            value={"Enviar Forms"}
+            value={"Enviar Formulário"}
           />
         </form>
       </div>
