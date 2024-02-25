@@ -1,9 +1,8 @@
-"use client";
-
 import Product from "@/components/Product";
 import Services from "@/components/Services";
 
 import { Carousel, Slide } from "@/components/Carousel";
+import Forms from "@/components/Forms";
 
 export default function Home() {
   let slides: Slide[] = [
@@ -27,12 +26,15 @@ export default function Home() {
       <Carousel slides={slides} />
 
       {/* Sobre */}
-      <section className="flex items-center justify-center py-6 bg-[url('/img/img-sobre-escura.jpg')] bg-local bg-cover bg-center md:bg-none md:bg-azul-escuro-forte">
+      <section
+        id="sobre"
+        className="flex items-center justify-center py-6 bg-[url('/img/img-sobre-escura.jpg')] bg-local bg-cover bg-center md:bg-none md:bg-azul-escuro-forte"
+      >
         <div className="md:flex md:flex-row items-center pb-8 max-w-screen-xl">
           <img
             className="hidden md:flex w-6/12 rounded-r-full mt-4"
             src="/img/img-sobre.jpg"
-            alt=""
+            alt="imagem da barbearia mostrando as cadeiras e o ambiente interno."
           />
           <div className="flex flex-col items-center justify-center md:w-6/12">
             <h2 className="text-3xl md:text-6xl text-vermelho-claro md:text-vermelho font-rollingstone py-6">
@@ -52,7 +54,10 @@ export default function Home() {
       </section>
 
       {/* Valores */}
-      <section className="flex items-center justify-center bg-azul-escuro-forte py-6">
+      <section
+        id="valores"
+        className="flex items-center justify-center bg-azul-escuro-forte py-6"
+      >
         <div className="flex flex-col items-center justify-center text-bege bg-azul-escuro-forte mb-6 max-w-screen-xl">
           <h2 className="text-3xl md:text-6xl font-rollingstone py-6 md:mb-16">
             Valores
@@ -63,7 +68,7 @@ export default function Home() {
                 Lorem ipsum dolor, sit amet consectetur adipisicing elit. Neque,
                 id.
               </span>
-              <div className="hidden md:flex justify-center bg-vermelho rounded-3xl p-1 border-2 border-black w-52">
+              <div className="hidden md:flex justify-center bg-vermelho-escuro rounded-3xl p-1 border-2 border-black w-52">
                 <a
                   href="https://web.whatsapp.com/"
                   target="_blank"
@@ -109,7 +114,10 @@ export default function Home() {
       </section>
 
       {/* Produtos */}
-      <section className="flex items-center justify-center bg-gradient-to-b from-azul-escuro-forte to-black py-6">
+      <section
+        id="produtos"
+        className="flex items-center justify-center bg-gradient-to-b from-azul-escuro-forte to-black py-6"
+      >
         <div className="flex flex-col items-center justify-center max-w-screen-xl mb-8">
           <div className="flex flex-col items-center justify-center mb-6">
             <h2 className="text-3xl md:text-6xl text-bege font-rollingstone m-9 md:mb-16">
@@ -142,6 +150,18 @@ export default function Home() {
               fugiat?."
             ></Product>
           </div>
+        </div>
+      </section>
+
+      <section
+        id="contato"
+        className="flex flex-col items-center justify-center bg-black py-10 gap-10"
+      >
+        <h2 className="text-3xl md:text-6xl text-bege font-rollingstone ">
+          Contato
+        </h2>
+        <div className="flex flex-col items-center justify-center max-w-screen-xl">
+          <Forms />
         </div>
       </section>
     </>
