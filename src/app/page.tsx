@@ -32,10 +32,6 @@ export default function Home() {
         id="sobre"
         className="flex items-center justify-center py-6 bg-[url('/img/img-sobre-escura.jpg')] bg-local bg-cover bg-center md:bg-none md:bg-azul-escuro-forte"
       >
-      <section
-        id="sobre"
-        className="flex items-center justify-center py-6 bg-[url('/img/img-sobre-escura.jpg')] bg-local bg-cover bg-center md:bg-none md:bg-azul-escuro-forte"
-      >
         <div className="md:flex md:flex-row items-center pb-8 max-w-screen-xl">
           <img
             className="hidden md:flex w-6/12 rounded-r-full mt-4"
@@ -147,6 +143,7 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Contato */}
       <section
         id="contato"
         className="flex flex-col items-center justify-center bg-black py-10 gap-10"
