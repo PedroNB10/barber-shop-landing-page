@@ -166,11 +166,6 @@ export default function Forms() {
             isSubmitType={true}
             addClass="border-none rounded-xl"
           />
-          {/* <input
-            className=" bg-vermelho-escuro text-bege cursor-pointer rounded-xl p-3"
-            type="submit"
-            value={"Enviar Formulário"}
-          /> */}
         </form>
       </div>
       <Toaster richColors />
