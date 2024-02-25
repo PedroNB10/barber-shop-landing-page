@@ -23,14 +23,14 @@ export default function Home() {
   return (
     <>
       {/* Carrossel */}
-      <section id="home">
+      <section id="home" className="scroll-m-32">
         <Carousel slides={slides} />
       </section>
 
       {/* Sobre */}
       <section
         id="sobre"
-        className="flex items-center justify-center py-6 bg-[url('/img/img-sobre-escura.jpg')] bg-local bg-cover bg-center md:bg-none md:bg-azul-escuro-forte"
+        className="flex items-center justify-center py-6 bg-[url('/img/img-sobre-escura.jpg')] bg-local bg-cover bg-center md:bg-none md:bg-azul-escuro-forte scroll-m-24"
       >
         <div className="md:flex md:flex-row items-center pb-8 max-w-screen-xl">
           <img
@@ -58,7 +58,7 @@ export default function Home() {
       {/* Valores */}
       <section
         id="valores"
-        className="flex items-center justify-center bg-azul-escuro-forte py-6"
+        className="flex items-center justify-center bg-azul-escuro-forte py-6 scroll-m-24"
       >
         <div className="flex flex-col items-center justify-center text-bege bg-azul-escuro-forte mb-6 max-w-screen-xl">
           <h2 className="text-3xl md:text-6xl font-rollingstone py-6 md:mb-16">
@@ -114,7 +114,7 @@ export default function Home() {
       {/* Produtos */}
       <section
         id="produtos"
-        className="flex items-center justify-center bg-gradient-to-b from-azul-escuro-forte to-black py-6"
+        className="flex items-center justify-center bg-gradient-to-b from-azul-escuro-forte to-black py-6 scroll-m-24"
       >
         <div className="flex flex-col items-center justify-center max-w-screen-xl mb-8">
           <div className="flex flex-col items-center justify-center mb-6">
@@ -154,7 +154,7 @@ export default function Home() {
       {/* Contato */}
       <section
         id="contato"
-        className="flex flex-col items-center justify-center bg-black py-10 gap-10"
+        className="flex flex-col items-center justify-center bg-black py-10 gap-10 scroll-m-24"
       >
         <h2 className="text-3xl md:text-6xl text-bege font-rollingstone ">
           Contato

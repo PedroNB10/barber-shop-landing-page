@@ -16,8 +16,8 @@ export function Header() {
   }
 
   return (
-    <div className="  ">
-      <div className="flex   items-center justify-center  w-full bg-azul-escuro-forte">
+    <div className="pb-24 md:pb-32">
+      <div className="flex   items-center justify-center  w-full bg-azul-escuro-forte fixed z-10 ">
         <header
           className={`${
             showMenu == "visible" ? "hidden" : "visible"
