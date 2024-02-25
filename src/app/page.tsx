@@ -1,8 +1,8 @@
 import Product from "@/components/Product";
 import Services from "@/components/Services";
-
 import { Carousel, Slide } from "@/components/Carousel";
 import Forms from "@/components/Forms";
+import ButtonAgende from "@/components/ButtonAgende";
 
 export default function Home() {
   let slides: Slide[] = [
@@ -23,7 +23,9 @@ export default function Home() {
   return (
     <>
       {/* Carrossel */}
-      <Carousel slides={slides} />
+      <section id="home">
+        <Carousel slides={slides} />
+      </section>
 
       {/* Sobre */}
       <section
@@ -68,14 +70,8 @@ export default function Home() {
                 Lorem ipsum dolor, sit amet consectetur adipisicing elit. Neque,
                 id.
               </span>
-              <div className="hidden md:flex justify-center bg-vermelho-escuro rounded-3xl p-1 border-2 border-black w-52">
-                <a
-                  href="https://web.whatsapp.com/"
-                  target="_blank"
-                  className="flex flex-row items-center text-white font-bold text-2xl text-center text-nowrap py-2"
-                >
-                  Agende já!
-                </a>
+              <div className="hidden md:flex">
+                <ButtonAgende></ButtonAgende>
               </div>
             </div>
             <div className="flex flex-col items-center justify-center w-full gap-4 pb-6">
@@ -99,14 +95,8 @@ export default function Home() {
                   price="R$50,00"
                 ></Services>
               </div>
-              <div className="md:hidden flex justify-center bg-vermelho rounded-3xl p-1 border-2 border-black w-52">
-                <a
-                  href="https://web.whatsapp.com/"
-                  target="_blank"
-                  className="flex flex-row items-center text-white font-bold text-xl text-center text-nowrap py-2"
-                >
-                  Agende já!
-                </a>
+              <div className="md:hidden flex">
+                <ButtonAgende></ButtonAgende>
               </div>
             </div>
           </div>
@@ -153,6 +143,7 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Contato */}
       <section
         id="contato"
         className="flex flex-col items-center justify-center bg-black py-10 gap-10"
