@@ -4,7 +4,7 @@ import { FormEvent, useEffect, useState } from "react";
 
 import { Toaster, toast } from "sonner";
 import emailjs from "@emailjs/browser";
-import ButtonAgende from "./Button";
+import Button from "./Button";
 
 interface IProps {
   SERVICE_ID: string;
@@ -161,7 +161,7 @@ export default function Forms() {
             placeholder="Escreva sua mensagem"
           ></textarea>
 
-          <ButtonAgende
+          <Button
             content="Enviar formulário"
             isSubmitType={true}
             addClass="border-none rounded-xl"
