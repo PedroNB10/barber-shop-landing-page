@@ -1,4 +1,4 @@
-import ButtonAgende from "./ButtonAgende";
+import ButtonAgende from "./Button";
 
 export function Footer() {
   return (
@@ -34,7 +34,8 @@ export function Footer() {
           </div>
           <div className="flex flex-col justify-center items-center gap-y-3 w-1/3 md:w-1/4">
             <h2 className="font-semibold text-lg">Contate-nos!</h2>
-            <div className="flex justify-center bg-vermelho rounded-2xl px-1 border-2 border-black w-11/12 max-w-28">
+
+            {/* <div className="flex justify-center bg-vermelho rounded-2xl px-1 border-2 border-black w-11/12 max-w-28">
               <a
                 href="https://web.whatsapp.com/"
                 target="_blank"
@@ -42,7 +43,13 @@ export function Footer() {
               >
                 Agende já!
               </a>
-            </div>
+            </div> */}
+            <ButtonAgende
+              content={"Agende já!"}
+              isSubmitType={false}
+              addClass="w-11/12 max-w-28"
+              href="https://www.whatsapp.com/"
+            />
           </div>
           <div className="flex flex-col items-center w-1/3 md:w-1/4 gap-y-3">
             <h2 className="font-semibold text-lg">Redes Sociais</h2>

@@ -2,7 +2,7 @@ import Product from "@/components/Product";
 import Services from "@/components/Services";
 import { Carousel, Slide } from "@/components/Carousel";
 import Forms from "@/components/Forms";
-import ButtonAgende from "@/components/ButtonAgende";
+import Button from "@/components/Button";
 
 export default function Home() {
   let slides: Slide[] = [
@@ -71,7 +71,11 @@ export default function Home() {
                 id.
               </span>
               <div className="hidden md:flex">
-                <ButtonAgende></ButtonAgende>
+                <Button
+                  content="Agende já"
+                  isSubmitType={false}
+                  href="https://www.whatsapp.com/"
+                />
               </div>
             </div>
             <div className="flex flex-col items-center justify-center w-full gap-4 pb-6">
@@ -96,7 +100,11 @@ export default function Home() {
                 ></Services>
               </div>
               <div className="md:hidden flex">
-                <ButtonAgende></ButtonAgende>
+                <Button
+                  content="Agende já"
+                  isSubmitType={false}
+                  href="https://www.whatsapp.com/"
+                />
               </div>
             </div>
           </div>
