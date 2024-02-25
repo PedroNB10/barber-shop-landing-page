@@ -28,8 +28,11 @@ export function Carousel({ slides }: { slides: Slide[] }) {
 
   return (
     <>
-      <div id="home" className="flex items-center justify-center bg-cinza relative">
-        <div className=" relative flex items-center justify-center overflow-hidden h-1/2 md:w-[65vw] lg:w-[55vw] max-w-screen-xl">
+      <div
+        id="home"
+        className="flex items-center justify-center bg-cinza relative"
+      >
+        <div className=" relative flex items-center justify-center overflow-hidden max-w-7xl ">
           <div
             className={`flex transition ease-out duration-500`}
             style={{
@@ -76,10 +79,10 @@ export function Carousel({ slides }: { slides: Slide[] }) {
           <div></div>
         </div>
 
-        <div className="absolute inset-0 bg-vermelho opacity-20 pointer-events-none flex items-center justify-center"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-vermelho to-transparent  opacity-20 pointer-events-none flex items-center justify-center"></div>
 
         <div className="absolute inset-0pointer-events-none flex items-center justify-center">
-          <h1 className="text-2xl md:text-4xl font-rollingstone text-bege ">
+          <h1 className="text-2xl md:text-6xl font-rollingstone text-bege ">
             Barba Rolling
           </h1>
         </div>
