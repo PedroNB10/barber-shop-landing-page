@@ -78,14 +78,22 @@ export function Footer() {
           </div>
         </div>
         <div className="flex flex-col justify-center items-center m-4 gap-y-2">
-          <div className="text-xs font-semibold">
+          <div className="text-sm font-semibold">
             Desenvolvido por
-            <a href="https://github.com/tomlavez"> Tomás Lavez</a> e
-            <a href="https://github.com/PedroNB10"> Pedro Nogueira</a>
+            <a href="https://github.com/tomlavez" target="_blank">
+              {" "}
+              Tomás Lavez
+            </a>{" "}
+            e
+            <a href="https://github.com/PedroNB10" target="_blank">
+              {" "}
+              Pedro Nogueira
+            </a>
           </div>
           <a
             className="flex justify-center"
             href="https://www.byronsolutions.com/"
+            target="_blank"
           >
             <img
               className="w-5/12"
