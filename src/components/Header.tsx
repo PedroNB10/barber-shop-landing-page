@@ -145,6 +145,14 @@ export function Header() {
                 Valores
               </li>
             </a>
+
+            <a onClick={closeMenu} href="#produtos">
+              <li
+                className={`${showMenu} font-rollingstone text-azul-escuro-forte uppercase hover:text-vermelho hover:underline`}
+              >
+                Produtos
+              </li>
+            </a>
             <a onClick={closeMenu} href="#contato">
               <li
                 className={`${showMenu} font-rollingstone text-azul-escuro-forte uppercase hover:text-vermelho hover:underline`}
