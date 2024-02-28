@@ -18,7 +18,7 @@ export function Header() {
   }
 
   return (
-    <div className="pb-24 md:pb-32">
+    <div className="pb-24 md:pb-32 scroll-smooth">
       <div className="flex   items-center justify-center  w-full bg-azul-escuro-forte fixed z-10 ">
         <header
           className={`${
@@ -105,7 +105,7 @@ export function Header() {
         <div
           className={` ${
             showMenu == "visible" ? "h-80" : "h-0"
-          }  fixed top-0 left-0 right-0 z-10 bg-bege flex flex-col items-center justify-center transition-all duration-500 ease-in-out  `}
+          }  fixed top-0 left-0 right-0 z-10 bg-bege flex flex-col items-center justify-center transition-all duration-500 ease-in-out  scroll-smooth`}
         >
           <button>
             <svg
@@ -124,7 +124,7 @@ export function Header() {
               />
             </svg>
           </button>
-          <ul className="flex flex-col gap-4 text-center">
+          <ul className="flex flex-col gap-4 text-center scroll-smooth">
             <Link onClick={closeMenu} href="/#home">
               <li
                 className={`${showMenu} font-rollingstone text-azul-escuro-forte uppercase hover:text-vermelho hover:underline`}
