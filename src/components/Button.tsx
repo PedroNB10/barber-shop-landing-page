@@ -1,5 +1,6 @@
+"use client";
 import React from "react";
-
+import { useRouter } from "next/navigation";
 interface IProps {
   content: string;
   href?: string;
@@ -8,6 +9,8 @@ interface IProps {
 }
 
 const Button = (props: IProps) => {
+  const router = useRouter();
+
   return (
     <button
       className={`${
@@ -26,7 +29,9 @@ const Button = (props: IProps) => {
         </a>
       ) : (
         <a
-          href={props.href}
+          onClick={() => {
+            router.push("/schedule");
+          }}
           target="_blank"
           className="flex flex-row items-center text-white font-bold text- text-center text-nowrap py-2"
         >

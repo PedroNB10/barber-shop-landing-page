@@ -1,6 +1,8 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 export function Header() {
   const [showMenu, setShowMenu] = useState("hidden");
@@ -30,16 +32,15 @@ export function Header() {
           />
 
           <ul className="hidden md:visible md:flex items-center gap-6">
-            <a href="#home">
+            <Link href="/#home">
               <li
                 onClick={closeMenu}
-                id=""
-                className="uppercase text-bege font-rollingstone text-md hover:text-vermelho hover:underline cursor-pointer select-none "
+                className="uppercase text-bege font-rollingstone text-md hover:text-vermelho hover:underline cursor-pointer select-none"
               >
-                Home
+                home
               </li>
-            </a>
-            <a href="#sobre">
+            </Link>
+            <Link href="/#sobre">
               <li
                 onClick={closeMenu}
                 id=""
@@ -47,8 +48,8 @@ export function Header() {
               >
                 Sobre
               </li>
-            </a>
-            <a href="#valores">
+            </Link>
+            <Link href="/#valores">
               <li
                 onClick={closeMenu}
                 id=""
@@ -56,8 +57,8 @@ export function Header() {
               >
                 Valores
               </li>
-            </a>
-            <a href="#produtos">
+            </Link>
+            <Link href="/#produtos">
               <li
                 onClick={closeMenu}
                 id=""
@@ -65,8 +66,8 @@ export function Header() {
               >
                 Produtos
               </li>
-            </a>
-            <a href="#contato">
+            </Link>
+            <Link href="/#contato">
               <li
                 onClick={closeMenu}
                 id=""
@@ -74,7 +75,7 @@ export function Header() {
               >
                 Contato
               </li>
-            </a>
+            </Link>
           </ul>
           <div className="md:absolute flex gap-8">
             <h1 className="font-rollingstone uppercase md:hidden text-bege">
@@ -124,42 +125,42 @@ export function Header() {
             </svg>
           </button>
           <ul className="flex flex-col gap-4 text-center">
-            <a onClick={closeMenu} href="#home">
+            <Link onClick={closeMenu} href="/#home">
               <li
                 className={`${showMenu} font-rollingstone text-azul-escuro-forte uppercase hover:text-vermelho hover:underline`}
               >
                 Home
               </li>
-            </a>
-            <a onClick={closeMenu} href="#sobre">
+            </Link>
+            <Link onClick={closeMenu} href="/#sobre">
               <li
                 className={`${showMenu} font-rollingstone text-azul-escuro-forte uppercase hover:text-vermelho hover:underline`}
               >
                 Sobre
               </li>
-            </a>
-            <a onClick={closeMenu} href="#valores">
+            </Link>
+            <Link onClick={closeMenu} href="/#valores">
               <li
                 className={`${showMenu} font-rollingstone text-azul-escuro-forte uppercase hover:text-vermelho hover:underline`}
               >
                 Valores
               </li>
-            </a>
+            </Link>
 
-            <a onClick={closeMenu} href="#produtos">
+            <Link onClick={closeMenu} href="/#produtos">
               <li
                 className={`${showMenu} font-rollingstone text-azul-escuro-forte uppercase hover:text-vermelho hover:underline`}
               >
                 Produtos
               </li>
-            </a>
-            <a onClick={closeMenu} href="#contato">
+            </Link>
+            <Link onClick={closeMenu} href="/#contato">
               <li
                 className={`${showMenu} font-rollingstone text-azul-escuro-forte uppercase hover:text-vermelho hover:underline`}
               >
                 Contato
               </li>
-            </a>
+            </Link>
           </ul>
         </div>
         {showMenu === "visible" ? (
