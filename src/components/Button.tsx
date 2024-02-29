@@ -1,5 +1,7 @@
+"use client";
 import React from "react";
-
+import { useRouter } from "next/navigation";
+import Link from "next/link";
 interface IProps {
   content: string;
   href?: string;
@@ -8,6 +10,8 @@ interface IProps {
 }
 
 const Button = (props: IProps) => {
+  const router = useRouter();
+
   return (
     <button
       className={`${
@@ -19,19 +23,17 @@ const Button = (props: IProps) => {
       {props.isSubmitType ? (
         <a
           type={"submit"}
-          target="_blank"
           className="flex flex-row items-center text-white font-bold text- text-center text-nowrap py-2"
         >
           {props.content}
         </a>
       ) : (
-        <a
-          href={props.href}
-          target="_blank"
+        <Link
           className="flex flex-row items-center text-white font-bold text- text-center text-nowrap py-2"
+          href={"/schedule"}
         >
           {props.content}
-        </a>
+        </Link>
       )}
     </button>
   );
