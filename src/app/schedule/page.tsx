@@ -5,8 +5,9 @@ import { faCalendarDays } from "@fortawesome/free-solid-svg-icons";
 import { faGoogle } from "@fortawesome/free-brands-svg-icons";
 
 import { createClient } from "@supabase/supabase-js";
-import { SessionContextProvider, Session } from "@supabase/auth-helpers-react";
-import { useRouter } from "next/navigation";
+import { Session } from "@supabase/auth-helpers-react";
+
+import { getWeekData } from "../getWeekData";
 
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL as string,
@@ -14,72 +15,68 @@ const supabase = createClient(
 );
 
 interface period {
-  startTime: Date;
-  endTime: Date;
+  startTime: string;
+  endTime: string;
 }
 
-interface weekDays {
-  monday: period[];
-  tuesday: period[];
-  wednesday: period[];
-  thursday: period[];
-  friday: period[];
-  saturday: period[];
-  sunday: period[];
+interface Day {
+  day: string;
+  periods: period[];
 }
 
 // nessa variável contém os horários que o barbeiro está disponível para atender
 
-let barberSchedule: weekDays = {
-  monday: [
-    {
-      startTime: new Date("2024-02-28T09:00:00-03:00"),
-      endTime: new Date("2024-02-28T13:00:00-03:00"),
-    },
-  ],
-
-  tuesday: [
-    {
-      startTime: new Date("2024-02-28T10:00:00-03:00"),
-      endTime: new Date("2024-02-28T18:00:00-03:00"),
-    },
-  ],
-
-  wednesday: [
-    {
-      startTime: new Date("2024-02-28T08:00:00-03:00"),
-      endTime: new Date("2024-02-28T18:00:00-03:00"),
-    },
-  ],
-
-  thursday: [
-    {
-      startTime: new Date("2024-02-28T07:00:00-03:00"),
-      endTime: new Date("2024-02-28T18:00:00-03:00"),
-    },
-  ],
-
-  friday: [
-    {
-      startTime: new Date("2024-02-28T10:00:00-03:00"),
-      endTime: new Date("2024-02-28T18:00:00-03:00"),
-    },
-  ],
-
-  saturday: [
-    {
-      startTime: new Date("2024-02-28T11:00:00-03:00"),
-      endTime: new Date("2024-02-28T14:00:00-03:00"),
-    },
-  ],
-
-  sunday: [
-    {
-      startTime: new Date("2024-02-28T10:00:00-03:00"),
-      endTime: new Date("2024-02-28T14:00:00-03:00"),
-    },
-  ],
-};
+let barberSchedule: Day[] = [
+  {
+    day: "Domingo",
+    periods: [
+      { startTime: "09:00", endTime: "12:00" },
+      { startTime: "14:00", endTime: "18:00" },
+    ],
+  },
+  {
+    day: "Segunda",
+    periods: [
+      { startTime: "08:00", endTime: "12:00" },
+      { startTime: "14:00", endTime: "18:00" },
+    ],
+  },
+  {
+    day: "Terça",
+    periods: [
+      { startTime: "09:00", endTime: "12:00" },
+      { startTime: "14:00", endTime: "18:00" },
+    ],
+  },
+  {
+    day: "Quarta",
+    periods: [
+      { startTime: "09:00", endTime: "12:00" },
+      { startTime: "14:00", endTime: "18:00" },
+    ],
+  },
+  {
+    day: "Quinta",
+    periods: [
+      { startTime: "08:00", endTime: "12:00" },
+      { startTime: "14:00", endTime: "18:00" },
+    ],
+  },
+  {
+    day: "Sexta",
+    periods: [
+      { startTime: "09:00", endTime: "12:00" },
+      { startTime: "14:00", endTime: "18:00" },
+    ],
+  },
+  {
+    day: "Sábado",
+    periods: [
+      { startTime: "09:00", endTime: "12:00" },
+      { startTime: "14:00", endTime: "18:00" },
+    ],
+  },
+];
 
 let daysOfWeek = [
   "Domingo",
@@ -93,14 +90,12 @@ let daysOfWeek = [
 
 let services = ["Barba", "Cabelo", "Sobrancelha"];
 
-let listSelectComponents: JSX.Element;
-
 function Schedule() {
-  const router = useRouter();
   const [session, setSession] = useState<Session>();
   const [isLoading, setIsLoading] = useState(true);
   const [selectedDay, setSelectedDay] = useState<number>(0);
   const [serviceSelected, setServiceSelected] = useState<string>("Barba");
+  const [timeSelected, setTimeSelected] = useState<string>("");
 
   const [availableHours, setAvailableHours] = useState<string[][]>();
 
@@ -141,245 +136,45 @@ function Schedule() {
   useEffect(() => {
     let periodosDisponiveis = [];
 
-    switch (selectedDay) {
-      case 0:
-        periodosDisponiveis = barberSchedule.sunday.map((period) => {
-          let initialTime = period.startTime.getHours();
-          let finalTime = period.endTime.getHours();
+    console.log(barberSchedule[selectedDay].periods);
 
-          let options = [];
+    periodosDisponiveis = barberSchedule[selectedDay].periods.map((period) => {
+      let availableHours = [];
+      let startHour = Number(period.startTime.split(":")[0]);
+      let endHour = Number(period.endTime.split(":")[0]);
 
-          for (let i = initialTime; i < finalTime; i++) {
-            options.push(`${i}:00`);
-            if (serviceSelected === "Cabelo") options.push(`${i}:30`);
-            if (serviceSelected === "Barba") {
-              options.push(`${i}:15`);
-              options.push(`${i}:30`);
-              options.push(`${i}:45`);
-            }
-            if (serviceSelected === "Sobrancelha") {
-              options.push(`${i}:10`);
-              options.push(`${i}:20`);
-              options.push(`${i}:30`);
-              options.push(`${i}:40`);
-              options.push(`${i}:50`);
-            }
-          }
+      let actualDate = new Date();
 
-          return options;
-        });
+      for (let i = startHour; i < endHour; i++) {
+        let hour = i.toString().padStart(2, "0");
 
-        console.log(periodosDisponiveis);
+        if (selectedDay === actualDate.getDay() && i <= actualDate.getHours())
+          continue;
 
-        setAvailableHours(periodosDisponiveis);
-        console.log("availableHours", availableHours);
+        availableHours.push(`${hour}:00`);
 
-        break;
+        if (serviceSelected === "Barba") {
+          availableHours.push(`${hour}:15`);
+          availableHours.push(`${hour}:30`);
+          availableHours.push(`${hour}:45`);
+        }
+        if (serviceSelected === "Cabelo") {
+          availableHours.push(`${hour}:30`);
+        }
+        if (serviceSelected === "Sobrancelha") {
+          availableHours.push(`${hour}:10`);
+          availableHours.push(`${hour}:20`);
+          availableHours.push(`${hour}:30`);
+          availableHours.push(`${hour}:40`);
+          availableHours.push(`${hour}:50`);
+        }
+      }
 
-      case 1:
-        periodosDisponiveis = barberSchedule.monday.map((period) => {
-          let initialTime = period.startTime.getHours();
-          let finalTime = period.endTime.getHours();
+      return availableHours;
+    });
 
-          let options = [];
-
-          for (let i = initialTime; i < finalTime; i++) {
-            options.push(`${i}:00`);
-            if (serviceSelected === "Cabelo") options.push(`${i}:30`);
-            if (serviceSelected === "Barba") {
-              options.push(`${i}:15`);
-              options.push(`${i}:30`);
-              options.push(`${i}:45`);
-            }
-            if (serviceSelected === "Sobrancelha") {
-              options.push(`${i}:10`);
-              options.push(`${i}:20`);
-              options.push(`${i}:30`);
-              options.push(`${i}:40`);
-              options.push(`${i}:50`);
-            }
-          }
-
-          return options;
-        });
-
-        console.log(periodosDisponiveis);
-
-        setAvailableHours(periodosDisponiveis);
-        console.log("availableHours", availableHours);
-
-        break;
-
-      case 2:
-        periodosDisponiveis = barberSchedule.tuesday.map((period) => {
-          let initialTime = period.startTime.getHours();
-          let finalTime = period.endTime.getHours();
-
-          let options = [];
-
-          for (let i = initialTime; i < finalTime; i++) {
-            options.push(`${i}:00`);
-            if (serviceSelected === "Cabelo") options.push(`${i}:30`);
-            if (serviceSelected === "Barba") {
-              options.push(`${i}:15`);
-              options.push(`${i}:30`);
-              options.push(`${i}:45`);
-            }
-            if (serviceSelected === "Sobrancelha") {
-              options.push(`${i}:10`);
-              options.push(`${i}:20`);
-              options.push(`${i}:30`);
-              options.push(`${i}:40`);
-              options.push(`${i}:50`);
-            }
-          }
-
-          return options;
-        });
-
-        console.log(periodosDisponiveis);
-
-        setAvailableHours(periodosDisponiveis);
-        console.log("availableHours", availableHours);
-
-        break;
-
-      case 3:
-        periodosDisponiveis = barberSchedule.wednesday.map((period) => {
-          let initialTime = period.startTime.getHours();
-          let finalTime = period.endTime.getHours();
-
-          let options = [];
-
-          for (let i = initialTime; i < finalTime; i++) {
-            options.push(`${i}:00`);
-            if (serviceSelected === "Cabelo") options.push(`${i}:30`);
-            if (serviceSelected === "Barba") {
-              options.push(`${i}:15`);
-              options.push(`${i}:30`);
-              options.push(`${i}:45`);
-            }
-            if (serviceSelected === "Sobrancelha") {
-              options.push(`${i}:10`);
-              options.push(`${i}:20`);
-              options.push(`${i}:30`);
-              options.push(`${i}:40`);
-              options.push(`${i}:50`);
-            }
-          }
-
-          return options;
-        });
-
-        console.log(periodosDisponiveis);
-
-        setAvailableHours(periodosDisponiveis);
-        console.log("availableHours", availableHours);
-
-        break;
-
-      case 4:
-        periodosDisponiveis = barberSchedule.thursday.map((period) => {
-          let initialTime = period.startTime.getHours();
-          let finalTime = period.endTime.getHours();
-
-          let options = [];
-
-          for (let i = initialTime; i < finalTime; i++) {
-            options.push(`${i}:00`);
-            if (serviceSelected === "Cabelo") options.push(`${i}:30`);
-            if (serviceSelected === "Barba") {
-              options.push(`${i}:15`);
-              options.push(`${i}:30`);
-              options.push(`${i}:45`);
-            }
-            if (serviceSelected === "Sobrancelha") {
-              options.push(`${i}:10`);
-              options.push(`${i}:20`);
-              options.push(`${i}:30`);
-              options.push(`${i}:40`);
-              options.push(`${i}:50`);
-            }
-          }
-
-          return options;
-        });
-
-        console.log(periodosDisponiveis);
-
-        setAvailableHours(periodosDisponiveis);
-        console.log("availableHours", availableHours);
-
-        break;
-
-      case 5:
-        periodosDisponiveis = barberSchedule.friday.map((period) => {
-          let initialTime = period.startTime.getHours();
-          let finalTime = period.endTime.getHours();
-
-          let options = [];
-
-          for (let i = initialTime; i < finalTime; i++) {
-            options.push(`${i}:00`);
-            if (serviceSelected === "Cabelo") options.push(`${i}:30`);
-            if (serviceSelected === "Barba") {
-              options.push(`${i}:15`);
-              options.push(`${i}:30`);
-              options.push(`${i}:45`);
-            }
-            if (serviceSelected === "Sobrancelha") {
-              options.push(`${i}:10`);
-              options.push(`${i}:20`);
-              options.push(`${i}:30`);
-              options.push(`${i}:40`);
-              options.push(`${i}:50`);
-            }
-          }
-
-          return options;
-        });
-
-        console.log(periodosDisponiveis);
-
-        setAvailableHours(periodosDisponiveis);
-        console.log("availableHours", availableHours);
-
-        break;
-
-      case 6:
-        periodosDisponiveis = barberSchedule.saturday.map((period) => {
-          let initialTime = period.startTime.getHours();
-          let finalTime = period.endTime.getHours();
-
-          let options = [];
-
-          for (let i = initialTime; i < finalTime; i++) {
-            options.push(`${i}:00`);
-            if (serviceSelected === "Cabelo") options.push(`${i}:30`);
-            if (serviceSelected === "Barba") {
-              options.push(`${i}:15`);
-              options.push(`${i}:30`);
-              options.push(`${i}:45`);
-            }
-            if (serviceSelected === "Sobrancelha") {
-              options.push(`${i}:10`);
-              options.push(`${i}:20`);
-              options.push(`${i}:30`);
-              options.push(`${i}:40`);
-              options.push(`${i}:50`);
-            }
-          }
-
-          return options;
-        });
-
-        console.log(periodosDisponiveis);
-
-        setAvailableHours(periodosDisponiveis);
-        console.log("availableHours", availableHours);
-
-        break;
-    }
+    setAvailableHours(periodosDisponiveis);
+    setTimeSelected(periodosDisponiveis[0][0]);
   }, [selectedDay, serviceSelected]);
 
   async function signOut() {
@@ -391,16 +186,89 @@ function Schedule() {
   };
 
   async function createCalendarEvent() {
+    let initialDate;
+    let finalDate;
+    console.log(timeSelected);
+    console.log(serviceSelected);
+    console.log(barberSchedule[selectedDay].day);
+
+    let week = getWeekData();
+    console.log(week);
+
+    let day = week.find((day) => day.indexDoDia === selectedDay);
+    console.log(day?.diaDoMes);
+    let actualDate = new Date();
+
+    let currentMinute = timeSelected.split(":")[1];
+    let currentHour = timeSelected.split(":")[0];
+
+    let initialDateDay = `${actualDate.getFullYear()}-${day?.numeroDoMes}-${
+      day?.diaDoMes
+    }T${timeSelected}:00-03:00`;
+
+    let finalHour;
+    let finalMinute;
+
+    if (serviceSelected === "Barba") {
+      finalMinute = Number(currentMinute) + 15;
+
+      if (finalMinute >= 60) {
+        finalMinute = finalMinute - 60;
+        finalHour = Number(currentHour) + 1;
+      } else {
+        finalHour = currentHour;
+      }
+    }
+
+    if (serviceSelected === "Cabelo") {
+      finalMinute = Number(currentMinute) + 30;
+
+      if (finalMinute >= 60) {
+        finalMinute = finalMinute - 60;
+        finalHour = Number(currentHour) + 1;
+      } else {
+        finalHour = currentHour;
+      }
+    }
+
+    if (serviceSelected === "Sobrancelha") {
+      finalMinute = Number(currentMinute) + 10;
+
+      if (finalMinute >= 60) {
+        finalMinute = finalMinute - 60;
+        finalHour = Number(currentHour) + 1;
+      } else {
+        finalHour = currentHour;
+      }
+    }
+
+    let finalHourString = finalHour?.toString().padStart(2, "0");
+    console.log(finalHourString);
+    let finalMinuteString = finalMinute?.toString().padStart(2, "0");
+    console.log(finalMinuteString);
+
+    let finalDateDay = `${actualDate.getFullYear()}-${day?.numeroDoMes}-${
+      day?.diaDoMes
+    }T${finalHourString}:${finalMinuteString}:00-03:00`;
+
+    console.log(initialDateDay);
+    console.log(finalDateDay);
+    //dateTime: "2024-02-29T18:00:00-03:00",
+
+    // dateTime: "2024-02-29T18:00:00-03:00",
+    // initialDate 2024-02-29T:00-03:00
+
     const event = {
-      summary: "Corte de cabelo",
-      description: "teste de evento",
+      summary: serviceSelected,
+      description: "Serviço realizado por barbearia Barba Rolling ",
 
       start: {
-        dateTime: "2024-02-28T18:00:00-03:00",
+        dateTime: initialDateDay,
         timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone,
       },
       end: {
-        dateTime: "2024-02-28T18:45:00-03:00",
+        //dateTime: "2024-02-29T18:45:00-03:00",
+        dateTime: finalDateDay,
         timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone,
       },
       attendees: [
@@ -428,7 +296,11 @@ function Schedule() {
       .then((data) => {
         console.log(data);
         console.log(data.status);
-        alert("Evento criado com sucesso");
+        if (data.status === 200) {
+          alert("Evento criado com sucesso!");
+        } else {
+          alert("Erro ao criar evento, tente novamente mais tarde.");
+        }
       });
   }
 
@@ -497,9 +369,7 @@ function Schedule() {
                   <option
                     value={index}
                     onClick={() => {
-                      console.log("index", index);
                       setSelectedDay(index);
-                      console.log("selectedDay", selectedDay);
                     }}
                   >
                     {day}
@@ -512,10 +382,26 @@ function Schedule() {
             <select name="" id="">
               {availableHours?.map((hour) => {
                 return hour.map((time) => {
-                  return <option value={time}>{time}</option>;
+                  return (
+                    <option
+                      value={time}
+                      onClick={() => {
+                        setTimeSelected(time);
+                      }}
+                    >
+                      {time}
+                    </option>
+                  );
                 });
               })}
             </select>
+
+            <button
+              className="bg-cinza text-bege p-3 w-fit mx-auto"
+              onClick={createCalendarEvent}
+            >
+              Agendar
+            </button>
           </div>
         ) : (
           <div className="flex flex-col gap-5 justify-center">
