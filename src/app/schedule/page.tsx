@@ -8,6 +8,7 @@ import { createClient } from "@supabase/supabase-js";
 import { Session } from "@supabase/auth-helpers-react";
 
 import { getWeekData } from "../getWeekData";
+import { Toaster, toast } from "sonner";
 
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL as string,
@@ -95,7 +96,9 @@ function Schedule() {
   const [isLoading, setIsLoading] = useState(true);
   const [selectedDay, setSelectedDay] = useState<number>(0);
   const [serviceSelected, setServiceSelected] = useState<string>("Barba");
-  const [timeSelected, setTimeSelected] = useState<string>("");
+  const [timeSelected, setTimeSelected] = useState<string>(
+    barberSchedule[0].periods[0].startTime
+  );
 
   const [availableHours, setAvailableHours] = useState<string[][]>();
 
@@ -297,9 +300,11 @@ function Schedule() {
         console.log(data);
         console.log(data.status);
         if (data.status === 200) {
-          alert("Evento criado com sucesso!");
+          console.log("Evento criado com sucesso!");
+          toast.success("Evento criado com sucesso!");
         } else {
-          alert("Erro ao criar evento, tente novamente mais tarde.");
+          console.log("Erro ao criar evento!");
+          toast.error("Erro ao criar evento!");
         }
       });
   }
@@ -340,12 +345,7 @@ function Schedule() {
               Seja bem vindo(a) {session.user.user_metadata.full_name}, prossiga
               selecionando o tipo de serviço e o horário desejado.
             </span>
-            <button
-              className="bg-vermelho-escuro px-4 py-2 rounded-md text-bege w-fit mx-auto"
-              onClick={signOut}
-            >
-              Sair
-            </button>
+
             <span className="self-start">Serviço</span>
             <select name="" id="">
               {services.map((service) => {
@@ -402,6 +402,13 @@ function Schedule() {
             >
               Agendar
             </button>
+
+            <button
+              className="bg-vermelho-escuro px-4 py-2 rounded-md text-bege w-fit mx-auto"
+              onClick={signOut}
+            >
+              Sair
+            </button>
           </div>
         ) : (
           <div className="flex flex-col gap-5 justify-center">
@@ -424,6 +431,8 @@ function Schedule() {
           </div>
         )}
       </section>
+
+      <Toaster richColors />
     </div>
   );
 }
