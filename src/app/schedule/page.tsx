@@ -100,7 +100,6 @@ function Schedule() {
     barberSchedule[0].periods[0].startTime
   );
 
-  console.log(timeSelected);
   const [availableHours, setAvailableHours] = useState<string[][]>();
 
   useEffect(() => {
@@ -131,18 +130,18 @@ function Schedule() {
 
       if (error) {
         console.error("Error signing in with Google:", error);
+        toast.error("Erro ao realizar login com Google");
       }
     } catch (error) {
       console.error("Unexpected error during Google sign-in:", error);
+      toast.error("Erro inesperado durante o login com Google");
     }
   };
 
   useEffect(() => {
-    let periodosDisponiveis = [];
+    let avaiblePeriods = [];
 
-    console.log(barberSchedule[selectedDay].periods);
-
-    periodosDisponiveis = barberSchedule[selectedDay].periods.map((period) => {
+    avaiblePeriods = barberSchedule[selectedDay].periods.map((period) => {
       let availableHours = [];
       let startHour = Number(period.startTime.split(":")[0]);
       let endHour = Number(period.endTime.split(":")[0]);
@@ -177,8 +176,8 @@ function Schedule() {
       return availableHours;
     });
 
-    setAvailableHours(periodosDisponiveis);
-    setTimeSelected(periodosDisponiveis[0][0]);
+    setAvailableHours(avaiblePeriods);
+    setTimeSelected(avaiblePeriods[0][0]);
   }, [selectedDay, serviceSelected]);
 
   async function signOut() {
@@ -190,24 +189,17 @@ function Schedule() {
   };
 
   async function createCalendarEvent() {
-    let initialDate;
-    let finalDate;
-    console.log(timeSelected);
-    console.log(serviceSelected);
-    console.log(barberSchedule[selectedDay].day);
-
     let week = getWeekData();
-    console.log(week);
 
-    let day = week.find((day) => day.indexDoDia === selectedDay);
-    console.log(day?.diaDoMes);
+    let day = week.find((day) => day.indexDay === selectedDay);
+
     let actualDate = new Date();
 
     let currentMinute = timeSelected.split(":")[1];
     let currentHour = timeSelected.split(":")[0];
 
-    let initialDateDay = `${actualDate.getFullYear()}-${day?.numeroDoMes}-${
-      day?.diaDoMes
+    let initialDateDay = `${actualDate.getFullYear()}-${day?.numberOfMonth}-${
+      day?.dayOfMonth
     }T${timeSelected}:00-03:00`;
 
     let finalHour;
@@ -247,20 +239,12 @@ function Schedule() {
     }
 
     let finalHourString = finalHour?.toString().padStart(2, "0");
-    console.log(finalHourString);
+
     let finalMinuteString = finalMinute?.toString().padStart(2, "0");
-    console.log(finalMinuteString);
 
-    let finalDateDay = `${actualDate.getFullYear()}-${day?.numeroDoMes}-${
-      day?.diaDoMes
+    let finalDateDay = `${actualDate.getFullYear()}-${day?.numberOfMonth}-${
+      day?.dayOfMonth
     }T${finalHourString}:${finalMinuteString}:00-03:00`;
-
-    console.log(initialDateDay);
-    console.log(finalDateDay);
-    //dateTime: "2024-02-29T18:00:00-03:00",
-
-    // dateTime: "2024-02-29T18:00:00-03:00",
-    // initialDate 2024-02-29T:00-03:00
 
     const event = {
       summary: serviceSelected,
@@ -298,13 +282,9 @@ function Schedule() {
         return data;
       })
       .then((data) => {
-        console.log(data);
-        console.log(data.status);
         if (data.status === 200) {
-          console.log("Evento criado com sucesso!");
           toast.success("Evento criado com sucesso!");
         } else {
-          console.log("Erro ao criar evento!");
           toast.error("Erro ao criar evento!");
         }
       });
