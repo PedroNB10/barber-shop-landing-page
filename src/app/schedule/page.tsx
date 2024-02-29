@@ -124,7 +124,7 @@ function Schedule() {
         provider: "google",
         options: {
           scopes: "https://www.googleapis.com/auth/calendar",
-          redirectTo: "http://localhost:3000/schedule",
+          redirectTo: process.env.NEXT_PUBLIC_URL_REDIRECT as string,
         },
       });
 
