@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { useRouter } from "next/navigation";
+
 import Link from "next/link";
 
 export function Header() {
@@ -9,12 +9,10 @@ export function Header() {
 
   function openMenu() {
     setShowMenu("visible");
-    console.log(showMenu);
   }
 
   function closeMenu() {
     setShowMenu("hidden");
-    console.log(showMenu);
   }
 
   return (

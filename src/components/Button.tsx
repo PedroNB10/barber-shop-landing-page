@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { useRouter } from "next/navigation";
+
 import Link from "next/link";
 interface IProps {
   content: string;
@@ -10,8 +10,6 @@ interface IProps {
 }
 
 const Button = (props: IProps) => {
-  const router = useRouter();
-
   return (
     <button
       className={`${

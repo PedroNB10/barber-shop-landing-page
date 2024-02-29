@@ -41,9 +41,6 @@ export default function Forms() {
     }
   }, [telephone]);
 
-  // console.log(process.env.NEXT_PUBLIC_SERVICE_ID);
-  // console.log(process.env.NEXT_PUBLIC_TEMPLATE_ID);
-  // console.log(process.env.NEXT_PUBLIC_PUBLIC_KEY);
   const IDs = {
     PUBLIC_KEY:
       process.env.NEXT_PUBLIC_PUBLIC_KEY == undefined
