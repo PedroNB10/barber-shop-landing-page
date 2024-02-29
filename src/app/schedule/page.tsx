@@ -100,6 +100,7 @@ function Schedule() {
     barberSchedule[0].periods[0].startTime
   );
 
+  console.log(timeSelected);
   const [availableHours, setAvailableHours] = useState<string[][]>();
 
   useEffect(() => {
@@ -310,7 +311,7 @@ function Schedule() {
   }
 
   return (
-    <div className="bg-bege h-30 py-12 text-azul-escuro-medio font-sans ">
+    <div className="bg-bege h-30 py-6 text-azul-escuro-medio font-sans w-[90vw] mx-auto md:w-full">
       <section className="flex flex-col items-center justify-center  scroll-m-24 gap-10">
         <div className="flex flex-col items-center gap-6">
           <FontAwesomeIcon icon={faCalendarDays} className="h-8" />
@@ -341,82 +342,92 @@ function Schedule() {
 
         {session ? (
           <div className="flex flex-col gap-5 justify-center">
-            <span className=" font-sans font-bold w-96 text-center">
+            <span className=" font-sans font-bold text-center ">
               Seja bem vindo(a) {session.user.user_metadata.full_name}, prossiga
               selecionando o tipo de serviço e o horário desejado.
             </span>
 
-            <span className="self-start">Serviço</span>
-            <select name="" id="">
-              {services.map((service) => {
-                return (
-                  <option
-                    value={service}
-                    onClick={() => {
-                      setServiceSelected(service);
-                    }}
-                  >
-                    {service}
-                  </option>
-                );
-              })}
-            </select>
-
-            <span className="self-start">Dia</span>
-            <select name="" id="">
-              {daysOfWeek.map((day, index) => {
-                return (
-                  <option
-                    value={index}
-                    onClick={() => {
-                      setSelectedDay(index);
-                    }}
-                  >
-                    {day}
-                  </option>
-                );
-              })}
-            </select>
-
-            <span className="self-start">Horário</span>
-            <select name="" id="">
-              {availableHours?.map((hour) => {
-                return hour.map((time) => {
+            <div className="flex flex-col px-5 gap-2">
+              <span className="self-start">Serviço</span>
+              <select
+                className="bg-azul-escuro-medio text-bege p-2 rounded-md"
+                name=""
+                id=""
+              >
+                {services.map((service) => {
                   return (
                     <option
-                      value={time}
+                      value={service}
                       onClick={() => {
-                        setTimeSelected(time);
+                        setServiceSelected(service);
                       }}
                     >
-                      {time}
+                      {service}
                     </option>
                   );
-                });
-              })}
-            </select>
-
-            <button
-              className="bg-cinza text-bege p-3 w-fit mx-auto"
-              onClick={createCalendarEvent}
-            >
-              Agendar
-            </button>
-
-            <button
-              className="bg-vermelho-escuro px-4 py-2 rounded-md text-bege w-fit mx-auto"
-              onClick={signOut}
-            >
-              Sair
-            </button>
+                })}
+              </select>
+              <span className="self-start">Dia</span>
+              <select
+                name=""
+                id=""
+                className="bg-azul-escuro-medio text-bege p-2 rounded-md"
+              >
+                {daysOfWeek.map((day, index) => {
+                  return (
+                    <option
+                      value={index}
+                      onClick={() => {
+                        setSelectedDay(index);
+                      }}
+                    >
+                      {day}
+                    </option>
+                  );
+                })}
+              </select>
+              <span className="self-start">Horário</span>
+              <select
+                name=""
+                id=""
+                className="bg-azul-escuro-medio text-bege p-2 rounded-md"
+              >
+                {availableHours?.map((hour) => {
+                  return hour.map((time) => {
+                    return (
+                      <option
+                        value={time}
+                        onClick={() => {
+                          setTimeSelected(time);
+                        }}
+                      >
+                        {time}
+                      </option>
+                    );
+                  });
+                })}
+              </select>
+              <button
+                className="bg-cinza text-bege py-2 w-full mx-auto rounded-md mb-10"
+                onClick={createCalendarEvent}
+              >
+                Agendar
+              </button>
+              <button
+                className="bg-vermelho-escuro rounded-md text-bege w-full mx-auto py-2"
+                onClick={signOut}
+              >
+                Sair
+              </button>
+            </div>
           </div>
         ) : (
           <div className="flex flex-col gap-5 justify-center">
-            <span className=" font-sans font-bold text-center">
+            <span className=" font-sans font-bold  w-48 mx-auto text-center">
               Olá seja bem vindo a página de agendamento!
             </span>
 
-            <p className="font-sans text-center w-96">
+            <p className="font-sans text-center w-72 md:w-96">
               Para realizar o agendamento com o serviço desejado primeiro faça o
               Login com sua conta google para poder notificar o seu barbeiro e
               encontrar um horário perfeito para vocês :){" "}
