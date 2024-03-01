@@ -187,7 +187,6 @@ function Schedule() {
     });
 
     setAvailableHours(avaiblePeriods);
-    // setTimeSelected(avaiblePeriods[0][0]);
   }, [selectedDay, serviceSelected]);
 
   async function signOut() {
