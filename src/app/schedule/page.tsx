@@ -79,7 +79,7 @@ let barberSchedule: Day[] = [
   },
 ];
 
-let daysOfWeek = [
+let daysOfWeekOnly = [
   "Domingo",
   "Segunda",
   "Terça",
@@ -88,6 +88,16 @@ let daysOfWeek = [
   "Sexta",
   "Sábado",
 ];
+
+const daysOfWeek: Record<string, number> = {
+  Domingo: 0,
+  Segunda: 1,
+  Terça: 2,
+  Quarta: 3,
+  Quinta: 4,
+  Sexta: 5,
+  Sábado: 6,
+};
 
 let services = ["Barba", "Cabelo", "Sobrancelha"];
 
@@ -177,7 +187,6 @@ function Schedule() {
     });
 
     setAvailableHours(avaiblePeriods);
-    setTimeSelected(avaiblePeriods[0][0]);
   }, [selectedDay, serviceSelected]);
 
   async function signOut() {
@@ -339,6 +348,10 @@ function Schedule() {
                 className="bg-azul-escuro-medio text-bege p-2 rounded-md"
                 name=""
                 id=""
+                onChange={(e) => {
+                  setServiceSelected(e.target.value);
+                  console.log(e.target.value);
+                }}
               >
                 {services.map((service) => {
                   return (
@@ -358,18 +371,13 @@ function Schedule() {
                 name=""
                 id=""
                 className="bg-azul-escuro-medio text-bege p-2 rounded-md"
+                onChange={(e) => {
+                  setSelectedDay(daysOfWeek[e.target.value]);
+                  console.log(e.target.value);
+                }}
               >
-                {daysOfWeek.map((day, index) => {
-                  return (
-                    <option
-                      value={index}
-                      onClick={() => {
-                        setSelectedDay(index);
-                      }}
-                    >
-                      {day}
-                    </option>
-                  );
+                {daysOfWeekOnly.map((day) => {
+                  return <option value={day}>{day}</option>;
                 })}
               </select>
               <span className="self-start">Horário</span>
@@ -377,21 +385,18 @@ function Schedule() {
                 name=""
                 id=""
                 className="bg-azul-escuro-medio text-bege p-2 rounded-md"
+                onChange={(e) => {
+                  setTimeSelected(e.target.value);
+                  console.log(e.target.value);
+                }}
               >
-                {availableHours?.map((hour) => {
-                  return hour.map((time) => {
-                    return (
-                      <option
-                        value={time}
-                        onClick={() => {
-                          setTimeSelected(time);
-                        }}
-                      >
-                        {time}
-                      </option>
-                    );
-                  });
-                })}
+                {availableHours?.flatMap((hour) =>
+                  hour.map((time) => (
+                    <option key={time} value={time}>
+                      {time}
+                    </option>
+                  ))
+                )}
               </select>
               <button
                 className="bg-cinza text-bege py-2 w-full mx-auto rounded-md mb-10"
