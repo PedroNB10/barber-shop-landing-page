@@ -7,7 +7,7 @@ import { faGoogle } from "@fortawesome/free-brands-svg-icons";
 import { createClient } from "@supabase/supabase-js";
 import { Session } from "@supabase/auth-helpers-react";
 
-import { getWeekData } from "../getWeekData";
+import { getWeekData } from "../util/getWeekData";
 import { Toaster, toast } from "sonner";
 
 const supabase = createClient(
@@ -95,9 +95,9 @@ function Schedule() {
   const [session, setSession] = useState<Session>();
   const [isLoading, setIsLoading] = useState(true);
   const [selectedDay, setSelectedDay] = useState<number>(0);
-  const [serviceSelected, setServiceSelected] = useState<string>("Barba");
+  const [serviceSelected, setServiceSelected] = useState<string>(services[0]);
   const [timeSelected, setTimeSelected] = useState<string>(
-    barberSchedule[0].periods[0].startTime
+    barberSchedule[1].periods[0].startTime
   );
 
   const [availableHours, setAvailableHours] = useState<string[][]>();
@@ -245,6 +245,12 @@ function Schedule() {
     let finalDateDay = `${actualDate.getFullYear()}-${day?.numberOfMonth}-${
       day?.dayOfMonth
     }T${finalHourString}:${finalMinuteString}:00-03:00`;
+
+    console.log(initialDateDay);
+    console.log(finalDateDay);
+    console.log(selectedDay);
+    console.log(serviceSelected);
+    console.log(timeSelected);
 
     const event = {
       summary: serviceSelected,
