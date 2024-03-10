@@ -43,9 +43,9 @@ export default function Forms() {
 
   const IDs = {
     PUBLIC_KEY:
-      process.env.NEXT_PUBLIC_PUBLIC_KEY == undefined
+      process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY == undefined
         ? ""
-        : process.env.NEXT_PUBLIC_PUBLIC_KEY,
+        : process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY,
     SERVICE_ID:
       process.env.NEXT_PUBLIC_SERVICE_ID == undefined
         ? ""
