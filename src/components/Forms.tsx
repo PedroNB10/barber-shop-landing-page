@@ -29,15 +29,15 @@ export default function Forms() {
     if (telephone.length === 1) {
       setTelephone("(" + telephone);
     }
-    if (telephone.length == 3) {
+    if (telephone.length === 3) {
       setTelephone(telephone + ")");
     }
-    if (telephone.length === 10) {
+    if (telephone.length === 9) {
       setTelephone(telephone + "-");
     }
 
-    if (telephone.length > 15) {
-      setTelephone(telephone.slice(0, 15));
+    if (telephone.length > 14) {
+      setTelephone(telephone.slice(0, 14));
     }
   }, [telephone]);
 
