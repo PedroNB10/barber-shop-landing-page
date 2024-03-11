@@ -23,17 +23,29 @@ $ git clone https://github.com/PedroNB10/barber-shop-landing-page.git
 Para que tenha o acesso a todas as funcionalidades do projeto como a de envio de formulário e autênticação com googleOAuth, renomeie o arquivo `.env.example` para `.env` e adicione as suas variáveis de ambiente:
 
 ```
-NEXT_PUBLIC_PUBLIC_KEY="xxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+GOOGLE_CLIENT_ID="xxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+GOOGLE_CLIENT_SECRET="xxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+NEXTAUTH_SECRET="xxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+NEXTAUTH_URL="http://localhost:3000"
+
+NEXT_PUBLIC_EMAILJS_PUBLIC_KEY="xxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
 NEXT_PUBLIC_TEMPLATE_ID="xxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
 NEXT_PUBLIC_SERVICE_ID="xxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
-NEXT_PUBLIC_SUPABASE_URL="xxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
-NEXT_PUBLIC_SUPABASE_ANON_KEY="xxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
-NEXT_PUBLIC_URL_REDIRECT="http://localhost:3000/schedule/"
 ```
 
-As primeiras 3 variáveis são da biblioteca [EmailJS](https://www.emailjs.com/) e as outras da biblioteca [Supabase](https://supabase.com/docs/guides/auth/auth-deep-dive/auth-google-oauth). Além disso é preciso criar um projeto no [Google Console](https://console.cloud.google.com/) para que use a API do Google Calendar. Segue um tutorioal de configuração desse um projeto google similar:
+As 3 últimas variáveis são da biblioteca [EmailJS](https://www.emailjs.com/) e as outras da biblioteca [NextAuth](https://next-auth.js.org/) e da API do Google. Além disso é preciso criar um projeto no [Google Console](https://console.cloud.google.com/) para que use a API do Google Calendar.
+
+Segue um tutorial de configuração desse um projeto google similar:
 
 [https://youtu.be/tgcCl52EN84?si=474uufmQk-r6exQV](https://youtu.be/tgcCl52EN84?si=474uufmQk-r6exQV)
+
+Segue um tutorial para fazer a autenticação com google usando NextAuth:
+
+[https://youtu.be/AbUVY16P4Ys?si=GnuAFyNReKBlWPK4](https://youtu.be/AbUVY16P4Ys?si=GnuAFyNReKBlWPK4)
+
+Segue um tutorial para configuração do EmailJS:
+
+[https://www.youtube.com/watch?v=Zbg1BHOVzRg](https://www.youtube.com/watch?v=Zbg1BHOVzRg)
 
 ## 💿 Inicialização
 
@@ -60,7 +72,7 @@ Para adição de páginas adicionais ou outras features é recomendado o uso da 
 - [TailwindCSS](https://tailwindcss.com/)
 - [JS](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript)
 - [TS](https://www.typescriptlang.org/)
-- [Supabase Google OAuth](https://supabase.com/docs/guides/auth/auth-deep-dive/auth-google-oauth)
+- [NextAuth](https://next-auth.js.org/)
 - [HeroIcons](https://heroicons.com/)
 - [FontAwesome](https://fontawesome.com/)
 - [Sonner](https://sonner.emilkowal.ski/)
@@ -69,6 +81,6 @@ Para adição de páginas adicionais ou outras features é recomendado o uso da 
 
 ## 👨🏻‍💻 Autores
 
-- [Tomás Lavez](https://github.com/tomlavez)
-
 - [Pedro Nogueira](https://github.com/PedroNB10)
+
+- [Tomás Lavez](https://github.com/tomlavez)
