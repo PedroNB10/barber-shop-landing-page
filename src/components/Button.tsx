@@ -28,7 +28,7 @@ const Button = (props: IProps) => {
       ) : (
         <Link
           className="flex flex-row items-center text-white font-bold text- text-center text-nowrap py-2"
-          href={"/schedule"}
+          href={"/signin"}
         >
           {props.content}
         </Link>
