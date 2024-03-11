@@ -6,7 +6,7 @@ O repositório do projeto pode ser encontrado [aqui](https://github.com/PedroNB1
 
 ## 📱 Demonstração Visual do projeto
 
-Link do site: [https://barber-shop-landing-page-jekcv5nch-pedronb10s-projects.vercel.app/schedule](https://barber-shop-landing-page-jekcv5nch-pedronb10s-projects.vercel.app/schedule)
+Link do site: [https://barber-shop-landing-page.vercel.app/](https://barber-shop-landing-page.vercel.app/)
 
 <center>
   <img src="./readme-assets/responsividade.gif" alt="gif da animação do projeto">
